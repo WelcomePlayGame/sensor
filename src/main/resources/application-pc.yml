@@ -1,7 +1,8 @@
+
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/scanner
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: 12345
 
@@ -9,4 +10,3 @@ server:
   error:
     whitelabel:
       enabled: false
-

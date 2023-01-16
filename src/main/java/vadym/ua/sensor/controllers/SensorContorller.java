@@ -2,6 +2,7 @@ package vadym.ua.sensor.controllers;
 
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -42,7 +43,8 @@ public class SensorContorller {
         return sensorService.getSensorById(id);
     }
 
-    @PostMapping(path = "/add")
+
+    @PostMapping(path = "/add", consumes = "application/json")
     public ResponseEntity<HttpStatus> addSensor(@RequestBody @Valid SensorDTO sensorDTO, BindingResult bindingResult) {
         Sensor sensor = convertToSensor(sensorDTO);
         validator.validate(sensor, bindingResult);
@@ -51,6 +53,17 @@ public class SensorContorller {
         }
         sensorService.addSensor(sensor);
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<HttpStatus> deleteSensorById(@RequestBody @PathVariable("id") long id) {
+        try {
+            sensorService.deleteSensor(id);
+        } catch (EmptyResultDataAccessException e) {
+            e.getMessage();
+        }
+    return ResponseEntity.ok(HttpStatus.NO_CONTENT);
     }
 
     @ExceptionHandler

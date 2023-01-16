@@ -1,5 +1,7 @@
 package vadym.ua.sensor.service;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vadym.ua.sensor.models.Sensor;
@@ -21,6 +23,7 @@ public class SensorService{
 
 
    public List<Sensor> getAllSensor() {
+//       PageRequest page = PageRequest.of(0,2, Sort.by("name").ascending());
         return sensorRepository.findAll();
     }
 
@@ -38,7 +41,6 @@ public class SensorService{
    public void deleteSensor(long id) {
         sensorRepository.deleteById(id);
    }
-
 
    public  Optional<Sensor> findByName(String name) {
     return sensorRepository.findByName(name);
