@@ -4,15 +4,16 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import vadym.ua.sensor.utils.SensorValidator;
+
 
 @SpringBootApplication
 public class SensorApplication implements WebMvcConfigurer {
     public static void main(String[] args) {
         SpringApplication.run(SensorApplication.class, args);
+
     }
 
     @Override
